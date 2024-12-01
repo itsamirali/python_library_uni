@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python Requests Library Documentation</title>
+    <style>
+      :root {
+        --primary-color: #2d6da3;
+        --secondary-color: #f8f9fa;
+        --code-bg: #f6f8fa;
+        --border-color: #e1e4e8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        background: var(--primary-color);
+        color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      header h1 {
+        margin-bottom: 1rem;
+      }
+
+      header p {
+        opacity: 0.9;
+      }
+
+      nav {
+        background: var(--secondary-color);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        border: 1px solid var(--border-color);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        color: var(--primary-color);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+      }
+
+      nav a:hover {
+        background-color: #e9ecef;
+      }
+
+      section {
+        margin-bottom: 3rem;
+        padding: 2rem;
+        background: white;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+      }
+
+      h2 {
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      h3 {
+        margin: 1.5rem 0 1rem;
+        color: #444;
+      }
+
+      code {
+        background: var(--code-bg);
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
+          monospace;
+        font-size: 0.9em;
+      }
+
+      pre {
+        background: var(--code-bg);
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 1rem 0;
+        border: 1px solid var(--border-color);
+      }
+
+      pre code {
+        padding: 0;
+        background: none;
+      }
+
+      .example {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-left: 4px solid var(--primary-color);
+        margin: 1rem 0;
+      }
+
+      .note {
+        background: #fff3cd;
+        border: 1px solid #ffeeba;
+        padding: 1rem;
+        border-radius: 4px;
+        margin: 1rem 0;
+      }
+
+      .method {
+        margin-bottom: 2rem;
+      }
+
+      .method h3 {
+        color: var(--primary-color);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+
+      th,
+      td {
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        text-align: left;
+      }
+
+      th {
+        background: var(--secondary-color);
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+        }
+
+        nav ul {
+          flex-direction: column;
+        }
+
+        section {
+          padding: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Python Requests Library</h1>
+      <p>HTTP for Humans™</p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#quickstart">Quickstart</a></li>
+        <li><a href="#http-methods">HTTP Methods</a></li>
+        <li><a href="#response">Response Objects</a></li>
+        <li><a href="#advanced">Advanced Usage</a></li>
+      </ul>
+    </nav>
+
+    <section id="capabilities">
+      <h2>Capabilities</h2>
+      <p>
+        The Requests library is packed with powerful features that make HTTP
+        requests simple and intuitive:
+      </p>
+
+      <h3>Core Features</h3>
+      <div class="example">
+        <ul>
+          <li>International Domains and URLs</li>
+          <li>Keep-Alive & Connection Pooling</li>
+          <li>Sessions with Cookie Persistence</li>
+          <li>Browser-style SSL Verification</li>
+          <li>Basic/Digest Authentication</li>
+          <li>Elegant Key/Value Cookies</li>
+          <li>Automatic Decompression</li>
+          <li>Automatic Content Decoding</li>
+          <li>Unicode Response Bodies</li>
+          <li>HTTP(S) Proxy Support</li>
+          <li>Multipart File Uploads</li>
+          <li>Streaming Downloads</li>
+          <li>Connection Timeouts</li>
+          <li>Chunked Requests</li>
+          <li>`.netrc` Support</li>
+        </ul>
+      </div>
+
+      <!-- <h3>Security Features</h3>
+      <div class="example">
+        <ul>
+          <li>SSL Verification</li>
+          <li>Native SSL/TLS verification</li>
+          <li>Custom SSL Certificates</li>
+          <li>Client-side SSL Certificates</li>
+          <li>HTTP(S) Proxy Support</li>
+        </ul>
+      </div> -->
+
+      <h3>HTTP Features Support</h3>
+      <table>
+        <tr>
+          <th>Feature</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td>Authentication</td>
+          <td>Basic, Digest, Custom, OAuth</td>
+        </tr>
+        <tr>
+          <td>Compression</td>
+          <td>gzip, deflate, brotli</td>
+        </tr>
+        <tr>
+          <td>Proxies</td>
+          <td>HTTP(S), SOCKS</td>
+        </tr>
+        <tr>
+          <td>Custom Headers</td>
+          <td>Full support for custom HTTP headers</td>
+        </tr>
+        <tr>
+          <td>Persistent Connections</td>
+          <td>Connection pooling and reuse</td>
+        </tr>
+        <tr>
+          <td>Sessions</td>
+          <td>Cookie persistence, connection pooling</td>
+        </tr>
+      </table>
+
+      <h3>Data Handling</h3>
+      <div class="method">
+        <pre><code># Automatic JSON handling
+response = requests.get('https://api.example.com/data')
+json_data = response.json()
+
+# Form data
+requests.post('https://api.example.com/submit', data={'key': 'value'})
+
+# File uploads
+files = {'file': open('report.pdf', 'rb')}
+requests.post('https://api.example.com/upload', files=files)
+
+# Streaming large files
+with requests.get('https://example.com/large-file', stream=True) as r:
+    with open('large-file.zip', 'wb') as f:
+        for chunk in r.iter_content(chunk_size=8192):
+            f.write(chunk)</code></pre>
+      </div>
+    </section>
+
+    <section id="installation">
+      <h2>Installation</h2>
+      <p>Installing Requests is simple with pip:</p>
+      <pre><code>$ pip install requests</code></pre>
+      <div class="note">
+        <p>Requests officially supports Python 2.7 & 3.6+</p>
+      </div>
+    </section>
+
+    <section id="quickstart">
+      <h2>Quickstart</h2>
+      <p>Make a simple request:</p>
+      <div class="example">
+        <pre><code>import requests
+
+# Make a GET request
+r = requests.get('https://api.github.com/user')
+print(r.status_code)  # 200
+print(r.json())</code></pre>
+      </div>
+    </section>
+
+    <section id="http-methods">
+      <h2>HTTP Methods</h2>
+      <div class="method">
+        <h3>GET Request</h3>
+        <pre><code>requests.get('https://api.github.com/user', 
+    params={'key': 'value'},
+    headers={'Authorization': 'token xxx'})</code></pre>
+      </div>
+
+      <div class="method">
+        <h3>POST Request</h3>
+        <pre><code>requests.post('https://api.example.com/post',
+    json={'key': 'value'},
+    headers={'Content-Type': 'application/json'})</code></pre>
+      </div>
+
+      <div class="method">
+        <h3>Other Methods</h3>
+        <pre><code>requests.put('https://api.example.com/put')
+requests.delete('https://api.example.com/delete')
+requests.head('https://api.example.com/head')
+requests.options('https://api.example.com/options')</code></pre>
+      </div>
+    </section>
+
+    <section id="response">
+      <h2>Response Objects</h2>
+      <table>
+        <tr>
+          <th>Attribute</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><code>r.text</code></td>
+          <td>Response content as unicode string</td>
+        </tr>
+        <tr>
+          <td><code>r.content</code></td>
+          <td>Response content as bytes</td>
+        </tr>
+        <tr>
+          <td><code>r.json()</code></td>
+          <td>Response parsed as JSON</td>
+        </tr>
+        <tr>
+          <td><code>r.status_code</code></td>
+          <td>HTTP status code</td>
+        </tr>
+        <tr>
+          <td><code>r.headers</code></td>
+          <td>Response headers</td>
+        </tr>
+      </table>
+    </section>
+
+    <section id="advanced">
+      <h2>Advanced Usage</h2>
+
+      <h3>Session Objects</h3>
+      <div class="example">
+        <pre><code>with requests.Session() as s:
+    s.auth = ('user', 'pass')
+    s.headers.update({'x-test': 'true'})
+    
+    # Both requests will use the same session
+    r = s.get('https://api.example.com/get')
+    r = s.post('https://api.example.com/post')</code></pre>
+      </div>
+
+      <h3>Request Timeouts</h3>
+      <div class="example">
+        <pre><code># Timeout in seconds
+requests.get('https://api.github.com', timeout=3)</code></pre>
+      </div>
+
+      <h3>Error Handling</h3>
+      <div class="example">
+        <pre><code>try:
+    r = requests.get('https://api.example.com')
+    r.raise_for_status()
+except requests.exceptions.RequestException as e:
+    print(f"An error occurred: {e}")</code></pre>
+      </div>
+    </section>
+  </body>
+</html>
